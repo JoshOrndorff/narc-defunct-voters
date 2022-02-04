@@ -1,9 +1,0 @@
-voter: HRnuaMzyzCeYqVoPnArCNm5x5GHmHYRqvAerFam9wbiL6wY
-single invalid target: ET9SkhNZhY7KT474vkCEJtAjbgJdaqAGW4beeeUJyDQ3SnA
-voting for 1
-strict candidates: 0
-
-Code seems like it is asking for strict candidates. But also it uses <= so could play it safe and use higher number.
-Although playing it safe means higher fees, and I'm not out anything if the report fails this ensure check.
-
-I reported this voter and it was successful.
