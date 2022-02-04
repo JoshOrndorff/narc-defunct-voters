@@ -3,7 +3,8 @@
 const { ApiPromise, WsProvider } = require('@polkadot/api');
 
 // Construct parameters for API instance
-const wsProvider = new WsProvider('wss://cc3-4.kusama.network/');
+const wsProvider = new WsProvider('wss://kusama-rpc.polkadot.io');
+// const wsProvider = new WsProvider('wss://rpc.polkadot.io');
 
 // Alice and Bob addresses
 // const ALICE = '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY';
@@ -13,10 +14,14 @@ const JACO = '16aTh4nKEJ7kCznnziFus5dPozKuYbMnb9ogjhSrqS7MaP7H';
 const JAM = '15aKvwRqGVAwuBMaogtQXhuz9EQqUWsZJSAzomyb5xYwgBXA';
 
 async function main() {
+
+	console.log("In main");
 	// Construct the actual api
 	const api = await ApiPromise.create({
 		provider: wsProvider,
 	});
+
+	console.log("got api")
 
 	// const federicosVotes = await api.query.electionsPhragmen.voting(FEDERICO);
 	// console.log("Federico is voting for");
@@ -53,6 +58,7 @@ async function main() {
 	// Start processing data
 	let voterIndex = 0;
 	votersAndVotes.forEach(([voter, [_, targets_]]) => {
+		console.log(targets_)
 		voterIndex++;
 		let targets = targets_.toJSON()
 		console.log(`${voterIndex}: ${voter.args.map((k) => k.toHuman())} is voting for ${targets.length} targets:`);
@@ -81,7 +87,7 @@ async function main() {
 
 	// Print the results
 	console.log(`${defunctVoters.length} / ${votersAndVotes.length} voters are defunct and can be reported:`);
-	console.log(defunctVoters.map(({who}) => who));
+	console.log(defunctVoters/*.map(({who}) => who)*/);
 }
 
 main().catch(console.error).finally(() => process.exit());
